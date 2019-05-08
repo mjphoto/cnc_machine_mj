@@ -27,14 +27,15 @@
   <property name="floatsin" type="float" value="10.0"/>
   <property name="floatsout" type="float" value="10.0"/>
   <property name="halui" type="bool" value="False"/>
-  <property name="ioaddr" type="string" value="0x378"/>
+  <property name="halui_list" type="eval" value="[]"/>
+  <property name="ioaddr" type="string" value="0"/>
   <property name="ioaddr2" type="string" value="1"/>
   <property name="ioaddr3" type="string" value="2"/>
   <property name="ladderconnect" type="bool" value="True"/>
   <property name="ladderhaltype" type="int" value="0"/>
   <property name="laddername" type="string" value="custom.clp"/>
-  <property name="latency" type="float" value="29000.0"/>
-  <property name="machinename" type="string" value="test_mill"/>
+  <property name="latency" type="float" value="12000.0"/>
+  <property name="machinename" type="string" value="test-mill-2.8"/>
   <property name="manualtoolchange" type="bool" value="True"/>
   <property name="md5sums" type="eval" value="[]"/>
   <property name="modbus" type="bool" value="False"/>
@@ -132,6 +133,8 @@
   <property name="pyvcpname" type="string" value="custom.xml"/>
   <property name="s32in" type="float" value="10.0"/>
   <property name="s32out" type="float" value="10.0"/>
+  <property name="select_axis" type="bool" value="True"/>
+  <property name="select_gmoccapy" type="bool" value="False"/>
   <property name="sim_hardware" type="bool" value="False"/>
   <property name="spindlecarrier" type="int" value="100"/>
   <property name="spindlecpr" type="int" value="100"/>
@@ -144,8 +147,36 @@
   <property name="stepspace" type="float" value="5000.0"/>
   <property name="steptime" type="float" value="5000.0"/>
   <property name="tempexists" type="int" value="0"/>
+  <property name="uhomepos" type="int" value="0"/>
+  <property name="uhomesw" type="int" value="0"/>
+  <property name="uhomevel" type="float" value="1.5"/>
+  <property name="ulatchdir" type="int" value="0"/>
+  <property name="uleadscrew" type="int" value="5"/>
+  <property name="umaxacc" type="int" value="750"/>
+  <property name="umaxlim" type="int" value="200"/>
+  <property name="umaxvel" type="int" value="25"/>
+  <property name="umicrostep" type="int" value="2"/>
+  <property name="uminlim" type="int" value="0"/>
   <property name="units" type="int" value="1"/>
+  <property name="upulleyden" type="int" value="1"/>
+  <property name="upulleynum" type="int" value="1"/>
+  <property name="uscale" type="int" value="0"/>
   <property name="usespindleatspeed" type="bool" value="False"/>
+  <property name="usteprev" type="int" value="200"/>
+  <property name="vhomepos" type="int" value="0"/>
+  <property name="vhomesw" type="int" value="0"/>
+  <property name="vhomevel" type="float" value="1.5"/>
+  <property name="vlatchdir" type="int" value="0"/>
+  <property name="vleadscrew" type="int" value="5"/>
+  <property name="vmaxacc" type="int" value="750"/>
+  <property name="vmaxlim" type="int" value="200"/>
+  <property name="vmaxvel" type="int" value="25"/>
+  <property name="vmicrostep" type="int" value="2"/>
+  <property name="vminlim" type="int" value="0"/>
+  <property name="vpulleyden" type="int" value="1"/>
+  <property name="vpulleynum" type="int" value="1"/>
+  <property name="vscale" type="int" value="0"/>
+  <property name="vsteprev" type="int" value="200"/>
   <property name="xhomepos" type="float" value="0.0"/>
   <property name="xhomesw" type="float" value="0.0"/>
   <property name="xhomevel" type="float" value="1.5"/>
