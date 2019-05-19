@@ -49,6 +49,7 @@ net xenable         => parport.0.pin-01-out
 net xdir            => parport.0.pin-14-out
 net xstep           => parport.0.pin-02-out
 setp parport.0.pin-02-out-reset 1
+setp parport.0.pin-02-out-invert 1
 net min-home-x      <= parport.0.pin-10-in
 # setup second parallel port for specific limits here
 # net min-x           <= parport.0.pin-13-in
@@ -63,6 +64,7 @@ net min-home-y1      <= parport.0.pin-11-in
 net y2dir            => parport.0.pin-05-out
 net y2step           => parport.0.pin-06-out
 setp parport.0.pin-06-out-reset 1
+setp parport.0.pin-06-out-invert 1
 net min-home-y2      <= parport.0.pin-13-in
 
 # Z axis
