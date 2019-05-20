@@ -57,17 +57,18 @@ net min-home-x      <= parport.0.pin-10-in-not
 # net min-x           <= parport.0.pin-13-in
 
 # Y axis
-# joint 1
+# joint 1 (on y control and a limit on interface board)
 net y1dir            => parport.0.pin-03-out
+setp parport.0.pin-03-out-invert 1
 net y1step           => parport.0.pin-16-out
 setp parport.0.pin-16-out-reset 1
-net min-home-y1      <= parport.0.pin-11-in-not
+net min-home-y1      <= parport.0.pin-13-in-not
 # joint 2 (using connector labelled a axis on board)
 net y2dir            => parport.0.pin-05-out
 net y2step           => parport.0.pin-06-out
 setp parport.0.pin-06-out-reset 1
-setp parport.0.pin-06-out-invert 1
-net min-home-y2      <= parport.0.pin-13-in-not
+#setp parport.0.pin-06-out-invert 1
+net min-home-y2      <= parport.0.pin-11-in-not
 
 # Z axis
 net zdir            => parport.0.pin-08-out
