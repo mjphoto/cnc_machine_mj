@@ -28,7 +28,7 @@
   <property name="floatsout" type="float" value="10.0"/>
   <property name="halui" type="bool" value="False"/>
   <property name="halui_list" type="eval" value="[]"/>
-  <property name="ioaddr" type="string" value="2"/>
+  <property name="ioaddr" type="string" value="1"/>
   <property name="ioaddr2" type="string" value="1"/>
   <property name="ioaddr3" type="string" value="2"/>
   <property name="ladderconnect" type="bool" value="True"/>
@@ -42,18 +42,18 @@
   <property name="number_pports" type="int" value="1"/>
   <property name="period" type="int" value="25000"/>
   <property name="pin1" type="string" value="xenable"/>
-  <property name="pin10" type="string" value="unused-input"/>
-  <property name="pin10inv" type="bool" value="False"/>
-  <property name="pin11" type="string" value="unused-input"/>
+  <property name="pin10" type="string" value="home-x"/>
+  <property name="pin10inv" type="bool" value="True"/>
+  <property name="pin11" type="string" value="home-y"/>
   <property name="pin11inv" type="bool" value="False"/>
-  <property name="pin12" type="string" value="max-home-z"/>
-  <property name="pin12inv" type="bool" value="False"/>
-  <property name="pin13" type="string" value="min-z"/>
+  <property name="pin12" type="string" value="home-z"/>
+  <property name="pin12inv" type="bool" value="True"/>
+  <property name="pin13" type="string" value="home-a"/>
   <property name="pin13inv" type="bool" value="False"/>
   <property name="pin14" type="string" value="xdir"/>
-  <property name="pin14inv" type="bool" value="False"/>
-  <property name="pin15" type="string" value="unused-input"/>
-  <property name="pin15inv" type="bool" value="False"/>
+  <property name="pin14inv" type="bool" value="True"/>
+  <property name="pin15" type="string" value="estop-ext"/>
+  <property name="pin15inv" type="bool" value="True"/>
   <property name="pin16" type="string" value="ystep"/>
   <property name="pin16inv" type="bool" value="False"/>
   <property name="pin17" type="string" value="unused-output"/>
@@ -62,7 +62,7 @@
   <property name="pin2" type="string" value="xstep"/>
   <property name="pin2inv" type="bool" value="False"/>
   <property name="pin3" type="string" value="ydir"/>
-  <property name="pin3inv" type="bool" value="False"/>
+  <property name="pin3inv" type="bool" value="True"/>
   <property name="pin4" type="string" value="unused-output"/>
   <property name="pin4inv" type="bool" value="False"/>
   <property name="pin5" type="string" value="adir"/>
@@ -184,26 +184,26 @@
   <property name="xleadscrew" type="float" value="40.0"/>
   <property name="xmaxacc" type="float" value="750.0"/>
   <property name="xmaxlim" type="float" value="1300.0"/>
-  <property name="xmaxvel" type="float" value="25.0"/>
-  <property name="xmicrostep" type="float" value="8.0"/>
+  <property name="xmaxvel" type="float" value="100.0"/>
+  <property name="xmicrostep" type="float" value="1.0"/>
   <property name="xminlim" type="float" value="0.0"/>
   <property name="xpulleyden" type="float" value="1.0"/>
   <property name="xpulleynum" type="float" value="1.0"/>
-  <property name="xscale" type="float" value="40.0"/>
+  <property name="xscale" type="float" value="5.0"/>
   <property name="xsteprev" type="float" value="200.0"/>
   <property name="yhomepos" type="float" value="0.0"/>
   <property name="yhomesw" type="float" value="0.0"/>
   <property name="yhomevel" type="float" value="1.5"/>
   <property name="ylatchdir" type="int" value="0"/>
-  <property name="yleadscrew" type="float" value="40.0"/>
+  <property name="yleadscrew" type="float" value="100.0"/>
   <property name="ymaxacc" type="float" value="750.0"/>
   <property name="ymaxlim" type="float" value="2500.0"/>
   <property name="ymaxvel" type="float" value="25.0"/>
-  <property name="ymicrostep" type="float" value="8.0"/>
+  <property name="ymicrostep" type="float" value="1.0"/>
   <property name="yminlim" type="float" value="0.0"/>
   <property name="ypulleyden" type="float" value="1.0"/>
   <property name="ypulleynum" type="float" value="1.0"/>
-  <property name="yscale" type="float" value="40.0"/>
+  <property name="yscale" type="float" value="2.0"/>
   <property name="ysteprev" type="float" value="200.0"/>
   <property name="zhomepos" type="float" value="0.0"/>
   <property name="zhomesw" type="float" value="0.0"/>
