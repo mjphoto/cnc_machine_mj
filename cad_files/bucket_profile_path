@@ -1,35 +1,15 @@
 (Exported by FreeCAD)
 (Post Processor: linuxcnc_post)
-(Output Time:2019-05-27 21:48:17.735816)
+(Output Time:2019-05-28 17:26:50.260669)
 (begin preamble)
 G17 G54 G40 G49 G80 G90
 G21
-(begin operation: T1: 5mm drill)
+(begin operation: T1: 3mm end mill)
 (machine: not set, mm/min)
-(T1: 5mm drill)
+(T1: 3mm end mill)
 M6 T1
 M3 S0
-(finish operation: T1: 5mm drill)
-(begin operation: Drilling)
-(machine: not set, mm/min)
-(Drilling)
-(Begin Drilling)
-G0 Z24.000
-G90
-G98
-G81 X0.013 Y49.386 Z5.000 R25.000
-G81 X49.411 Y-0.022 Z5.000 R25.000
-G81 X0.015 Y-49.398 Z5.000 R25.000
-G81 X-49.436 Y-0.001 Z5.000 R25.000
-G80
-G0 Z24.000
-(finish operation: Drilling)
-(begin operation: T2: 3mm endmill)
-(machine: not set, mm/min)
-(T2: 3mm endmill)
-M6 T2
-M3 S0
-(finish operation: T2: 3mm endmill)
+(finish operation: T1: 3mm end mill)
 (begin operation: Profile_Edges)
 (machine: not set, mm/min)
 (Profile_Edges)
@@ -37,6 +17,14 @@ M3 S0
 G0 Z24.000
 G0 X24.748 Y24.748
 G0 Z22.000
+G1 X24.748 Y24.748 Z16.000
+G2 X3.229 Y-34.850 Z16.000 I-24.748 J-24.748
+G2 X-3.229 Y34.850 Z16.000 I-3.229 J34.850
+G2 X24.748 Y24.748 Z16.000 I3.229 J-34.850
+G1 X24.748 Y24.748 Z13.000
+G2 X3.229 Y-34.850 Z13.000 I-24.748 J-24.748
+G2 X-3.229 Y34.850 Z13.000 I-3.229 J34.850
+G2 X24.748 Y24.748 Z13.000 I3.229 J-34.850
 G1 X24.748 Y24.748 Z10.000
 G2 X3.229 Y-34.850 Z10.000 I-24.748 J-24.748
 G2 X-3.229 Y34.850 Z10.000 I-3.229 J34.850
