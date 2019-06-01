@@ -1,4 +1,7 @@
 T1 P1 X0 Y0 Z0 D6 ;6mm end mill 
 T2 P2 X0 Y0 Z0 D3 ;3mm end mill 
-T3 P3 X0 Y0 Z0 D5.1 ;5.1mm drill 
+T3 P3 X0 Y0 Z0 D5.1 ;5.1mm drill
+T4 P4 X0 Y0 Z0 D5.5 ;5.5mm drill
+T5 P5 X0 Y0 Z0 D6 ;6mm drill
+T6 P6 X0 Y0 Z0 D6.5 ;6.5mm drill
 T99999 P99999 Z0.1 ;big tool number 
