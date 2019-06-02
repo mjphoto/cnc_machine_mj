@@ -4,3 +4,5 @@
 # http://7xcnc.com/software/probing/z-touch-plate/
 # check this out! http://7xcnc.com/software/linuxcnc/pendant/ joystick
 net remote-o100 halui.mdi-command-00 <= pyvcp.o100
+net remote-o101 halui.mdi-command-01 <= pyvcp.o101
+net remote-o102 halui.mdi-command-02 <= pyvcp.o102
