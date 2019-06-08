@@ -1,12 +1,12 @@
 <pre>
-o101 sub
-( Set current Z position to 0 so that we will always be moving down )
-G10 L20 P0 X0
-( Probe to X-10 at F25 [Uses machine units, I work in mm, this is meant to be slow!] )
-G38.2 X-10 f25
-( Set Z0 at point where probe triggers with offset of +1.47 [this is the thickness of my PCB plate. You must adjust this for your plate / setup] )
-G10 L20 P0 X6.20
-( Rapid to X20 above the material )
-G0 X20
-o101 endsub
+o102 sub
+( Set current Y position to 0 so that we will always be moving forward )
+G10 L20 P0 Y0
+( Probe to Y10 at F25 [Uses machine units, I work in mm, this is meant to be slow!] )
+G38.2 Y10 f25
+( Set Y0 at point where probe triggers with offset of +11.2 [this is the thickness of my PCB plate. You must adjust this for your plate / setup] )
+G10 L20 P0 Y11.2
+( Rapid back to Y-10 behind the material )
+G0 Y-10
+o102 endsub
 </pre>
