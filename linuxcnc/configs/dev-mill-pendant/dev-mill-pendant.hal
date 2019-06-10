@@ -55,16 +55,33 @@ net spindle-at-speed    => spindle.0.at-speed
 
 net estop-ext       <= parport.0.pin-15-in
 
-# debounce for touch off plate
-#limits debounce to stop false triggers
-loadrt debounce cfg=2 #change  to the number you want
+#setup debouncing for false triggers (8 limits/homes and one probe)
+loadrt debounce cfg=9
 setp debounce.0.delay 100 #this sets the delay 100 iterations of the base thread
 addf debounce.0 base-thread
-######### change following to pin in use:
+
+# debounce for touch off plate
 net deb-probe-in debounce.0.0.in <= parport.1.pin-15-in-not
-#net deb-probe-in debounce.0.0.in <= parport.1.pin-15-in
 net probe-in debounce.0.0.out
 net probe-in => motion.probe-input
+
+#debounce for limit switches
+net deb-min-home-x  debounce.0.1.in   <= parport.0.pin-10-in-not
+net min-home-x      debounce.0.1.out
+net deb-max-x       debounce.0.2.in   <= parport.1.pin-10-in
+net max-x           debounce.0.2.out
+net deb-min-home-y1 debounce.0.3.in   <= parport.0.pin-11-in-not
+net min-home-y1     debounce.0.3.out
+net deb-max-y1      debounce.0.4.in   <= parport.1.pin-11-in
+net max-y1          debounce.0.4.out
+net deb-min-home-y2 debounce.0.5.in   <= parport.0.pin-13-in-not
+net min-home-y2     debounce.0.5.out
+net deb-max-y2      debounce.0.6.in   <= parport.1.pin-13-in
+net max-y2          debounce.0.6.out
+net deb-max-home-z  debounce.0.7.in   <= parport.0.pin-12-in-not
+net max-home-z      debounce.0.7.out
+net deb-min-z       debounce.0.8.in   <= parport.1.pin-12-in
+net min-z           debounce.0.8.out
 
 # X axis
 net xenable         => parport.0.pin-01-out
@@ -72,31 +89,23 @@ net xdir            => parport.0.pin-14-out
 net xstep           => parport.0.pin-02-out
 setp parport.0.pin-02-out-reset 1
 setp parport.0.pin-02-out-invert 1
-net min-home-x      <= parport.0.pin-10-in-not
-net max-x           <= parport.1.pin-10-in
 
 # Y axis
 # joint 1
 net y1dir            => parport.0.pin-03-out
 net y1step           => parport.0.pin-16-out
 setp parport.0.pin-16-out-reset 1
-net min-home-y1      <= parport.0.pin-11-in-not
-net max-y1           <= parport.1.pin-11-in
 
 # joint 2 (using connector labelled a axis on board)
 net y2dir            => parport.0.pin-05-out
 setp parport.0.pin-05-out-invert 1
 net y2step           => parport.0.pin-06-out
 setp parport.0.pin-06-out-reset 1
-net min-home-y2      <= parport.0.pin-13-in-not
-net max-y2           <= parport.1.pin-13-in
 
 # Z axis
 net zdir            => parport.0.pin-08-out
 net zstep           => parport.0.pin-07-out
 setp parport.0.pin-07-out-reset 1
-net max-home-z      <= parport.0.pin-12-in-not
-net min-z           <= parport.1.pin-12-in
 
 # joint_0 config (x axis)
 setp stepgen.0.position-scale [JOINT_0]SCALE
