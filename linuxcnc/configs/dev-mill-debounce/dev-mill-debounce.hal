@@ -3,14 +3,16 @@
 # overwritten when you run stepconf again
 loadrt [KINS]KINEMATICS
 loadrt [EMCMOT]EMCMOT base_period_nsec=[EMCMOT]BASE_PERIOD servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
-loadrt hal_parport cfg="1 out"
+loadrt hal_parport cfg="1 out 2 out"
 setp parport.0.reset-time 5000
 loadrt stepgen step_type=0,0,0,0
 
 addf parport.0.read base-thread
+addf parport.1.read base-thread
 addf stepgen.make-pulses base-thread
 addf parport.0.write base-thread
 addf parport.0.reset base-thread
+addf parport.1.write base-thread
 
 addf stepgen.capture-position servo-thread
 addf motion-command-handler servo-thread
@@ -22,7 +24,7 @@ net spindle-cmd-rps     <= spindle.0.speed-out-rps
 net spindle-cmd-rps-abs <= spindle.0.speed-out-rps-abs
 net spindle-at-speed    => spindle.0.at-speed
 
-# pinout on DB25 for chinese controller:
+# pinout on DB25 for chinese controller (parport.0):
 # http://www.savebase.com/infobase/downloads/breakout_board_stepper_driver/user_manual_5_axis_breakout_board.pdf
 # PIN Function
 # 1   X/Y/Z/A/B-Enabled (enable amplifier in stepconf)
@@ -44,7 +46,42 @@ net spindle-at-speed    => spindle.0.at-speed
 # 17  B-Direction
 # 18-20 GND
 
-net estop-ext       <= parport.0.pin-15-in-not
+#parport 2 (parport.1):
+# 10 max-x
+# 11 max-y1
+# 12 min-z
+# 13 max-y2
+# 15 probe-in
+
+net estop-ext       <= parport.0.pin-15-in
+
+#setup debouncing for false triggers (8 limits/homes and one probe)
+loadrt debounce cfg=9
+setp debounce.0.delay 100 #this sets the delay 100 iterations of the base thread
+addf debounce.0 base-thread
+
+# debounce for touch off plate
+net deb-probe-in debounce.0.0.in <= parport.1.pin-15-in-not
+net probe-in debounce.0.0.out
+net probe-in => motion.probe-input
+
+#debounce for limit switches
+net deb-min-home-x  debounce.0.1.in   <= parport.0.pin-10-in-not
+net min-home-x      debounce.0.1.out
+net deb-max-x       debounce.0.2.in   <= parport.1.pin-10-in
+net max-x           debounce.0.2.out
+net deb-min-home-y1 debounce.0.3.in   <= parport.0.pin-11-in-not
+net min-home-y1     debounce.0.3.out
+net deb-max-y1      debounce.0.4.in   <= parport.1.pin-11-in
+net max-y1          debounce.0.4.out
+net deb-min-home-y2 debounce.0.5.in   <= parport.0.pin-13-in-not
+net min-home-y2     debounce.0.5.out
+net deb-max-y2      debounce.0.6.in   <= parport.1.pin-13-in
+net max-y2          debounce.0.6.out
+net deb-max-home-z  debounce.0.7.in   <= parport.0.pin-12-in-not
+net max-home-z      debounce.0.7.out
+net deb-min-z       debounce.0.8.in   <= parport.1.pin-12-in
+net min-z           debounce.0.8.out
 
 # X axis
 net xenable         => parport.0.pin-01-out
@@ -52,26 +89,23 @@ net xdir            => parport.0.pin-14-out
 net xstep           => parport.0.pin-02-out
 setp parport.0.pin-02-out-reset 1
 setp parport.0.pin-02-out-invert 1
-net home-x      <= parport.0.pin-10-in-not
 
 # Y axis
 # joint 1
 net y1dir            => parport.0.pin-03-out
 net y1step           => parport.0.pin-16-out
 setp parport.0.pin-16-out-reset 1
-net home-y1      <= parport.0.pin-11-in-not
+
 # joint 2 (using connector labelled a axis on board)
 net y2dir            => parport.0.pin-05-out
 setp parport.0.pin-05-out-invert 1
 net y2step           => parport.0.pin-06-out
 setp parport.0.pin-06-out-reset 1
-net home-y2      <= parport.0.pin-13-in-not
 
 # Z axis
 net zdir            => parport.0.pin-08-out
 net zstep           => parport.0.pin-07-out
 setp parport.0.pin-07-out-reset 1
-net home-z      <= parport.0.pin-12-in-not
 
 # joint_0 config (x axis)
 setp stepgen.0.position-scale [JOINT_0]SCALE
@@ -85,8 +119,9 @@ net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
 net xstep <= stepgen.0.step
 net xdir <= stepgen.0.dir
 net xenable joint.0.amp-enable-out => stepgen.0.enable
-net home-x => joint.0.home-sw-in
-#net home-x => joint.0.neg-lim-sw-in
+net min-home-x => joint.0.home-sw-in
+net min-home-x => joint.0.neg-lim-sw-in
+net max-x => joint.0.pos-lim-sw-in
 
 # joint_1 config (y1 axis)
 setp stepgen.1.position-scale [JOINT_1]SCALE
@@ -100,8 +135,9 @@ net y1pos-fb stepgen.1.position-fb => joint.1.motor-pos-fb
 net y1step <= stepgen.1.step
 net y1dir <= stepgen.1.dir
 net y1enable joint.1.amp-enable-out => stepgen.1.enable
-net home-y1 => joint.1.home-sw-in
-#net home-y1 => joint.1.neg-lim-sw-in
+net min-home-y1 => joint.1.home-sw-in
+net min-home-y1 => joint.1.neg-lim-sw-in
+net max-y1 => joint.1.pos-lim-sw-in
 
 # joint_2 config (y2)
 setp stepgen.2.position-scale [JOINT_2]SCALE
@@ -115,8 +151,10 @@ net y2pos-fb stepgen.2.position-fb => joint.2.motor-pos-fb
 net y2step <= stepgen.2.step
 net y2dir <= stepgen.2.dir
 net y2enable joint.2.amp-enable-out => stepgen.2.enable
-net home-y2 => joint.2.home-sw-in
-#net home-y2 => joint.2.neg-lim-sw-in
+net min-home-y2 => joint.2.home-sw-in
+net min-home-y2 => joint.2.neg-lim-sw-in
+net max-y2 => joint.2.pos-lim-sw-in
+
 
 # joint_3 (z axis)
 setp stepgen.3.position-scale [JOINT_3]SCALE
@@ -130,11 +168,12 @@ net zpos-fb stepgen.3.position-fb => joint.3.motor-pos-fb
 net zstep <= stepgen.3.step
 net zdir <= stepgen.3.dir
 net zenable joint.3.amp-enable-out => stepgen.3.enable
-net home-z => joint.3.home-sw-in
-#net home-z => joint.3.neg-lim-sw-in
+net max-home-z => joint.3.home-sw-in
+net max-home-z => joint.3.pos-lim-sw-in
+net min-z => joint.3.neg-lim-sw-in
 
 net estop-out <= iocontrol.0.user-enable-out
-net estop-out => iocontrol.0.emc-enable-in
+net estop-ext => iocontrol.0.emc-enable-in
 
 loadusr -W hal_manualtoolchange
 net tool-change iocontrol.0.tool-change => hal_manualtoolchange.change
