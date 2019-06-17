@@ -30,3 +30,24 @@ https://forum.linuxcnc.org/49-basic-configuration/33079-how-to-2-or-more-motors-
 ### Todo
 * Work out attachemnt detail for parts we are working on
 * A million other things
+
+For using joypad (testing):
+Page serves as a guide: http://wiki.linuxcnc.org/cgi-bin/wiki.pl?Simple_Remote_Pendant
+
+First start xboxdrv:
+```
+sudo xboxdrv
+```
+
+Then start hal to map pins
+```
+mw@cnc:~$ halrun
+halcmd: loadusr hal_input -d /devices/virtual/input/input15 -p Gamepad
+halcmd: No input device matching '/devices/virtual/input/input15' was found (1 devices checked)
+
+halcmd: loadusr hal_input -d /devices/virtual/input/input15 -p Gamepad
+halcmd: No input device matching '/devices/virtual/input/input15' was found (1 devices checked)
+
+halcmd: loadusr -W hal_input -KRAL Xbox
+halcmd: loadusr halmeter
+```
