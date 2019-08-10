@@ -111,8 +111,8 @@ setp parport.0.pin-07-out-reset 1
 setp stepgen.0.position-scale [JOINT_0]SCALE
 setp stepgen.0.steplen 1
 setp stepgen.0.stepspace 0
-setp stepgen.0.dirhold 38000
-setp stepgen.0.dirsetup 38000
+setp stepgen.0.dirhold 32000
+setp stepgen.0.dirsetup 32000
 setp stepgen.0.maxaccel [JOINT_0]STEPGEN_MAXACCEL
 net xpos-cmd joint.0.motor-pos-cmd => stepgen.0.position-cmd
 net xpos-fb stepgen.0.position-fb => joint.0.motor-pos-fb
