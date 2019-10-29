@@ -15,6 +15,11 @@
        <text>"Touch Off Y"</text>
        <font>('fixed',10)</font>
   </button>
+  <button>
+     <halpin>"o103"</halpin>
+     <text>"Rapid to Home"</text>
+     <font>('Fixed',10)</font>
+  </button>
   <vbox>
   <relief>RIDGE</relief>
   <bd>6</bd>
