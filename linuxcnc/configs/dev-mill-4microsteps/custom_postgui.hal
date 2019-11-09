@@ -6,7 +6,7 @@
 net remote-o100 halui.mdi-command-00 <= pyvcp.o100
 net remote-o101 halui.mdi-command-01 <= pyvcp.o101
 net remote-o102 halui.mdi-command-02 <= pyvcp.o102
-
+net rapid-to-home halui.mdi-command-03 pyvcp.rapid-to-home
 
 #spindle display
 net spindle-at-speed vfd.spindle-at-speed => pyvcp.spindle-at-speed-led

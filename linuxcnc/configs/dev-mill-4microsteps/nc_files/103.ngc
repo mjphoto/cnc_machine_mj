@@ -1,8 +1,8 @@
 <pre>
-o100 sub
-( Rapid up to Z10 above the material )
+o103 sub
+( Rapid up to Z18 above the material )
 G0 Z18
 ( Rapid move to origin for x and y )
-G28 X0 Y0
-o100 endsub
+G90 X0 Y0
+o103 endsub
 </pre>

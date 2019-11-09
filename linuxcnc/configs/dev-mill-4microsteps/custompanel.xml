@@ -16,7 +16,7 @@
        <font>('fixed',10)</font>
   </button>
   <button>
-     <halpin>"o103"</halpin>
+     <halpin>"rapid-to-home"</halpin>
      <text>"Rapid to Home"</text>
      <font>('Fixed',10)</font>
   </button>
