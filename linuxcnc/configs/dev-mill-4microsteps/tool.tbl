@@ -5,4 +5,5 @@ T4 P4 X0 Y0 Z0 D6 ;6mm drill
 T5 P5 X0 Y0 Z0 D19.05 ;3/4" Foam Cutter
 T6 P6 X0 Y0 Z0 D1.55 ;1.5mm end mill
 T7 P7 X0 Y0 Z0 D1 ;1mm end mill
+T8 P8 X0 Y0 Z0 D25 ;25mm 2 flute end mill
 T99999 P99999 Z0.1 ;big tool number 
