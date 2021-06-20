@@ -2,7 +2,12 @@
 # This file will not be overwritten when you run stepconf again
 
 #spindle control via rs485
-loadusr -Wn vfd hy_vfd -n vfd -d /dev/ttyUSB0
+# set the following registers in spindle vfd (push prgm, select register
+# push set and select menu item, then set agin:
+# PD164 1
+# PD165 3
+# see http://linuxcnc.org/docs/html/man/man1/hy_vfd.1.html for other settings
+loadusr -Wn vfd hy_vfd -n vfd -p none -r 9600 -s 1 -d /dev/ttyUSB0
 net spindle-fwd spindle.0.forward   => vfd.spindle-forward
 net spindle-reverse spindle.0.reverse  => vfd.spindle-reverse
 net spindle-cmd-rpm-abs spindle.0.speed-out-abs    => vfd.speed-command

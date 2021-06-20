@@ -9,8 +9,10 @@ net remote-o102 halui.mdi-command-02 <= pyvcp.o102
 net rapid-to-home halui.mdi-command-03 pyvcp.rapid-to-home
 
 #spindle display
+#I commented the follwing 2 lines when debugging spindle comms:
 net spindle-at-speed vfd.spindle-at-speed => pyvcp.spindle-at-speed-led
 net pyvcp-spindle-rpm   vfd.spindle-speed-fb    => pyvcp.spindle-speed
 #net spindle-at-speed => vfd.spindle-at-speed
 #last config line read at startup, so enable spindle
+#I also commented this one when debugging spindle
 setp vfd.enable 1
