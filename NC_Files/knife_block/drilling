@@ -1,0 +1,28 @@
+(Exported by FreeCAD)
+(Post Processor: linuxcnc_post)
+(Output Time:2021-07-24 11:31:44.192404)
+(begin preamble)
+G17 G54 G40 G49 G80 G90
+G21
+(begin operation: T3: 5.1mm drill)
+(machine: not set, mm/min)
+(T3: 5.1mm drill)
+M6 T3
+M3 S0
+(finish operation: T3: 5.1mm drill)
+(begin operation: Drilling001)
+(machine: not set, mm/min)
+(Drilling001)
+(Begin Drilling)
+G0 Z6.000
+G90
+G98
+G81 X41.990 Y18.005 Z-27.000 R10.000
+G81 X42.203 Y431.949 Z-27.000 R10.000
+G80
+G0 Z6.000
+(finish operation: Drilling001)
+(begin postamble)
+M05
+G17 G54 G90 G80 G40
+M2
